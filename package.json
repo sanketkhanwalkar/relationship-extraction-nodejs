@@ -1,5 +1,5 @@
 {
-  "name": "service-demo",
+  "name": "relationship-extraction-nodejs",
   "version": "0.1.1",
   "description": "A sample nodejs app for Bluemix that use the X service",
   "repository": {
