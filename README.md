@@ -33,7 +33,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 5. Create the Relationship Extraction service in Bluemix
   ```sh
-  $ cf create-service relationship_extraction relationship_extraction_free_plan re-service
+  $ cf create-service relationship_extraction relationship_extraction_free_plan relationship-extraction-service
   ```
 
 6. Push it live!
