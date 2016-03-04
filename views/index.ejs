@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <title>Relationship Extraction</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <!-- top level heading -->
+  <header class="_demo--heading">
+    <div class="_demo--container">
+      <a class="wordmark" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/">
+        <span class="wordmark--left">IBM</span>
+        <span class="wordmark--right">Watson Developer Cloud</span>
+      </a>
+      <nav class="heading-nav" role="menubar">
+        <li class="base--li heading-nav--li" role="presentation">
+          <a class="heading-nav--item" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html" role="menuitem">
+                    	Services
+					</a>
+        </li>
+        <li class="base--li heading-nav--li" role="presentation">
+          <a class="heading-nav--item" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/" role="menuitem">
+						Docs
+					</a>
+        </li>
+        <li class="base--li heading-nav--li" role="presentation">
+          <a class="heading-nav--item" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html" role="menuitem">
+						App Gallery
+					</a>
+        </li>
+        <li class="base--li heading-nav--li" role="presentation">
+          <a class="heading-nav--item" href="https://developer.ibm.com/watson/" role="menuitem">
+                        Community
+                    </a>
+        </li>
+      </nav>
+    </div>
+  </header>
+  <div class="_demo--banner banner">
+    <div class="_demo--container">
+      <div class="banner--service-container">
+        <div class="banner--service-icon-container">
+          <img class="banner--service-icon" src="images/service-icon.svg" alt="relationship extraction logo">
+        </div>
+        <div class="banner--service-info">
+          <h1 class="banner--service-title base--h1">
+                      <img class="banner--service-icon_INLINE" src="images/service-icon.svg" alt="relationship extraction logo">
+                           Relationship Extraction
+                  </h1>
+          <div class="banner--service-description">
+            Relationship Extraction makes sense of large unstructured data sets. It enables browsing of large collections of data via predefined sets of concepts and relations among them. We offer two APIs: one for English and one for Spanish news models.
+          </div>
+        </div>
+      </div>
+      <div class="banner--service-resource-container">
+        <div class="banner--row">
+          <div class="banner--service-resource">
+            <span class="icon icon-link"></span>
+            <strong>Resources:</strong>
+          </div>
+        </div>
+        <div class="banner--row">
+          <div class="banner--service-links">
+            <li class="base--li banner--service-link-item">
+              <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/sireapi/" target="_blank" class="base--a">Documentation</a>
+            </li>
+            <li class="base--li banner--service-link-item">
+              <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/apis/relationship-extraction-apis.html" target="_blank" class="base--a">API Explorer</a>
+            </li>
+            <li class="base--li banner--service-link-item">
+              <a href="https://github.com/watson-developer-cloud/relationship-extraction-nodejs" target="_blank" class="base--a">Fork on Github</a>
+            </li>
+            <li class="base--li banner--service-link-item">
+              <a href="https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/relationship-extraction-nodejs" target="_blank" class="base--a">Deploy on Bluemix</a>
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- demo body -->
+  <div class="_demo--container">
+    <article class="_content base--article">
+      <div class="row">
+        <div class="input-section">
+          <h3 class="base--h3">Try the API</h3>
+          <p class="base--p">Try inputting news articles, blog posts, emails, tweets, etc.</p>
+          <textarea class="base--textarea js-input-section--text-area" rows="12">
+During a trip to Milwaukee, Obama cited a new administration report attributing the increase in the number of insured Americans to provisions that created health insurance marketplaces where consumers can buy private plans, expanded Medicaid, required insurers to cover people with medical conditions and permitted young people to stay on their parents’ health plans until they turned 26.
+
+The president’s trip was designed to reward Milwaukee for its success in signing up people for coverage. It won a competition called the Healthy Communities Challenge that involved 20 cities.
+          </textarea>
+          <button type="submit" class="base--button input-section--submit-button js-input-section--submit-button">Submit</button>
+        </div>
+        <div class="output-section">
+          <h3 class="base--h3">Output</h3>
+          <div class="output-section--loading js-output-section--loading">
+            <div class="output-section--loading-image-container">
+              <img src="images/loading-indicator.gif" alt="loader" class="output-section--loading-image">
+            </div>
+          </div>
+          <div class="output-section--error js-output-section--error">
+            <div class="output-section--error-message js-output-section--error-message"></div>
+          </div>
+          <div class="output-section--table-container js-output-section--table-container"></div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Underscore Template Example -->
+  <script type="text/html" id="entityTableTemplate">
+    <table class="base--table">
+      <thead class="base--thead">
+        <tr class="base--tr">
+          <td class="base--td">Mention</td>
+          <td class="base--td">Entity</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% _.each(items, function(item, key, list) { %>
+        <tr class="base--tr">
+          <td class="base--td"><%= item.mention %></td>
+          <td class="base--td"><%= item.entity %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script type="text/javascript" src="js/demo.js"></script>
+</body>
+
+</html>
