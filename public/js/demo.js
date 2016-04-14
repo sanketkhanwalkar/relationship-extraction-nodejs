@@ -18,12 +18,14 @@
 
 $(document).ready(function () {
   var $table = $('.js-output-section--table-container'),
+      $prediction = $('.js-output-section--prediction-container'),
       $loading = $('.js-output-section--loading'),
       $error = $('.js-output-section--error'),
       $errorMessage = $('.js-output-section--error-message'),
       $submitButton = $('.js-input-section--submit-button'),
       $textarea = $('.js-input-section--text-area'),
-      tableTemplate = entityTableTemplate.innerHTML;
+      tableTemplate = entityTableTemplate.innerHTML,
+      predictionTemplate = predictionTextTemplate.innerHTML;
 
   /**
    * Emits table view update
@@ -43,6 +45,10 @@ $(document).ready(function () {
     return $textarea.val();
   }
 
+  // function predictCrime(var a) {
+  //   $prediction.html(_.template(predictionTemplate,{test: a}));
+  //   //$prediction.text("please work!");
+  // }
   /**
    * Send in input text and gets back Relationship Extraction data.
    * Makes AJAX Post Request.
@@ -56,13 +62,20 @@ $(document).ready(function () {
       $loading.hide();
       $table.show();
       $error.hide();
+      $prediction.show();
 
-      var mentionArray = data.doc.mentions.mention;
+      //var mentionArray = data.doc.mentions.mention;
+      var entityArray = data.doc.entities.entity;  
+      var a = data.testTitle;
+      $prediction.html(_.template(predictionTemplate,{test: a}));
 
-      updateTable(mentionArray.map(function(item) {
+
+//predictCrime(test);
+
+      updateTable(entityArray.map(function(item) {
         return {
-          mention: item.text,
-          entity: item.role
+          entity: item.mentref[0].text,
+          type: item.type
         };
       }));
 
@@ -82,6 +95,7 @@ $(document).ready(function () {
     $table.hide();
     $error.hide();
     extractData();
+    //predictCrime();
   });
 
 });

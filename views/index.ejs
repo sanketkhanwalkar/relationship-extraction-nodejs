@@ -3,7 +3,7 @@
 
 <head>
   <link rel="stylesheet" href="css/style.css">
-  <title>Relationship Extraction</title>
+  <title>Civilis</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,34 +11,36 @@
 </head>
 
 <body>
+<!--   <div class="title">  
+</div>  -->
   <!-- top level heading -->
   <header class="_demo--heading">
     <div class="_demo--container">
       <a class="wordmark" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/">
-        <span class="wordmark--left">IBM</span>
-        <span class="wordmark--right">Watson Developer Cloud</span>
+        <span class="wordmark--left">UCI</span>
+        <span class="wordmark--right">Counterintelligence Research Group</span>
       </a>
       <nav class="heading-nav" role="menubar">
         <li class="base--li heading-nav--li" role="presentation">
-          <a class="heading-nav--item" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html" role="menuitem">
-                    	Services
+          <a class="heading-nav--item" href="#" role="menuitem">
+                    	Home
 					</a>
         </li>
         <li class="base--li heading-nav--li" role="presentation">
-          <a class="heading-nav--item" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/" role="menuitem">
-						Docs
+          <a class="heading-nav--item" href="http://slnlab.ics.uci.edu/people.html" role="menuitem">
+						Team
 					</a>
         </li>
         <li class="base--li heading-nav--li" role="presentation">
-          <a class="heading-nav--item" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html" role="menuitem">
-						App Gallery
+          <a class="heading-nav--item" href="#" role="menuitem">
+						Contact
 					</a>
         </li>
-        <li class="base--li heading-nav--li" role="presentation">
+   <!--      <li class="base--li heading-nav--li" role="presentation">
           <a class="heading-nav--item" href="https://developer.ibm.com/watson/" role="menuitem">
                         Community
                     </a>
-        </li>
+        </li> -->
       </nav>
     </div>
   </header>
@@ -51,14 +53,14 @@
         <div class="banner--service-info">
           <h1 class="banner--service-title base--h1">
                       <img class="banner--service-icon_INLINE" src="images/service-icon.svg" alt="relationship extraction logo">
-                           Relationship Extraction
+                           CIVILIS
                   </h1>
           <div class="banner--service-description">
-            Relationship Extraction makes sense of large unstructured data sets. It enables browsing of large collections of data via predefined sets of concepts and relations among them. We offer two APIs: one for English and one for Spanish news models.
+            Intelligent Bot that collects and analyses crime reports using Machine Learning, Natural Language Processing and Decision Trees. Currently, the Bot is limited to crimes like Theft, Abuse (physical, drug, sexual) and Suspicion (activity, person, weapon possession).
           </div>
         </div>
       </div>
-      <div class="banner--service-resource-container">
+      <!-- <div class="banner--service-resource-container">
         <div class="banner--row">
           <div class="banner--service-resource">
             <span class="icon icon-link"></span>
@@ -81,7 +83,7 @@
             </li>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -90,17 +92,16 @@
     <article class="_content base--article">
       <div class="row">
         <div class="input-section">
-          <h3 class="base--h3">Try the API</h3>
-          <p class="base--p">Try inputting news articles, blog posts, emails, tweets, etc.</p>
+          <h3 class="base--h3">Try me</h3>
+          <p class="base--p">Try inputting any crime report from the categories mentioned in the description above</p>
           <textarea class="base--textarea js-input-section--text-area" rows="12">
-During a trip to Milwaukee, Obama cited a new administration report attributing the increase in the number of insured Americans to provisions that created health insurance marketplaces where consumers can buy private plans, expanded Medicaid, required insurers to cover people with medical conditions and permitted young people to stay on their parents’ health plans until they turned 26.
-
-The president’s trip was designed to reward Milwaukee for its success in signing up people for coverage. It won a competition called the Healthy Communities Challenge that involved 20 cities.
+My son was being followed by an unknown man in the morning. He looks like a 40 year old wearing black clothes and white most probably. This happened at around 8am at 323 Wolf Street, Los Angeles. Please help.
           </textarea>
           <button type="submit" class="base--button input-section--submit-button js-input-section--submit-button">Submit</button>
         </div>
         <div class="output-section">
           <h3 class="base--h3">Output</h3>
+          <!-- <h5 class="base--h5">Crime Prediction: Abuse Sexual Abuse</h5> -->
           <div class="output-section--loading js-output-section--loading">
             <div class="output-section--loading-image-container">
               <img src="images/loading-indicator.gif" alt="loader" class="output-section--loading-image">
@@ -109,9 +110,10 @@ The president’s trip was designed to reward Milwaukee for its success in signi
           <div class="output-section--error js-output-section--error">
             <div class="output-section--error-message js-output-section--error-message"></div>
           </div>
+          <div class="output-section--prediction-container js-output-section--prediction-container">
+
+          </div>
           <div class="output-section--table-container js-output-section--table-container"></div>
-        </div>
-      </div>
     </article>
   </div>
 
@@ -120,24 +122,30 @@ The president’s trip was designed to reward Milwaukee for its success in signi
     <table class="base--table">
       <thead class="base--thead">
         <tr class="base--tr">
-          <td class="base--td">Mention</td>
           <td class="base--td">Entity</td>
+          <td class="base--td">Type</td>
         </tr>
       </thead>
       <tbody>
         <% _.each(items, function(item, key, list) { %>
         <tr class="base--tr">
-          <td class="base--td"><%= item.mention %></td>
           <td class="base--td"><%= item.entity %></td>
+          <td class="base--td"><%= item.type %></td>
         </tr>
         <% }); %>
       </tbody>
     </table>
   </script>
 
+  <script type="text/html" id="predictionTextTemplate">
+<h5> <%= test %> </h5>
+  </script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
   <script type="text/javascript" src="js/demo.js"></script>
+
+
 </body>
 
 </html>
