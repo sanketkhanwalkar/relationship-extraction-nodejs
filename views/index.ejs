@@ -99,6 +99,9 @@ My son was being followed by an unknown man in the morning. He looks like a 40 y
           </textarea>
           <button type="submit" class="base--button input-section--submit-button js-input-section--submit-button">Submit</button>
         </div>
+
+
+
         <div class="output-section">
           <h3 class="base--h3">Output</h3>
           <!-- <h5 class="base--h5">Crime Prediction: Abuse Sexual Abuse</h5> -->
@@ -114,6 +117,14 @@ My son was being followed by an unknown man in the morning. He looks like a 40 y
 
           </div>
           <div class="output-section--table-container js-output-section--table-container"></div>
+        </div>
+
+
+
+        <div class="output-section-map" id="map"  style="height:400px;width:100%;">
+            <h3 class="base--h3">This is for the maps! please work!</h3>
+        </div>
+
     </article>
   </div>
 
@@ -141,7 +152,31 @@ My son was being followed by an unknown man in the morning. He looks like a 40 y
 <h5> <%= test %> </h5>
   </script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: {lat: 37.0902, lng: -95.7129 }
+        });
+
+        map.addListener('rightclick', function(e) {
+          placeMarkerAndPanTo(e.latLng, map);
+        });
+      }
+
+      function placeMarkerAndPanTo(latLng, map) {
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+        map.panTo(latLng);
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6fhyOVi25Da47h5tmGLGNOREIZom8Oik&callback=initMap" type="text/javascript">
+    </script>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
   <script type="text/javascript" src="js/demo.js"></script>
 

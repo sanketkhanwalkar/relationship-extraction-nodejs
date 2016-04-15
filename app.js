@@ -66,17 +66,17 @@ p.then(function (res2) {
   temp = temp[0];
   if (temp.length>1)
   {
-    ml_prediction = '\n' + temp[0].label + ' --> ' +temp[1].label +'\n';
-  console.log('Crime Prediction');
+    ml_prediction = temp[0].label + ' --> ' +temp[1].label;
+  console.log('Crime Prediction1');
   console.log(temp[0].label + ' --> ' +temp[1].label +'\n');
-  results.testTitle = ml_prediction;
+  results.mlPrediction = ml_prediction;
 
       res.json(results);
 }
 else
 {
-  ml_prediction = '\n' + temp[0].label + '\n';
-    console.log('Crime Prediction:');
+  ml_prediction = temp[0].label;
+    console.log('Crime Prediction2:');
   console.log(temp[0].label + '\n');
   results.mlPrediction = ml_prediction;
 
@@ -86,7 +86,7 @@ else
 
       console.log('Crime report entered:');
       console.log(req.body.text);
-      console.log(JSON.stringify(results));
+     // console.log(JSON.stringify(results));
       // results.testTitle = "fucking awesome!"
 
       // res.json(results);

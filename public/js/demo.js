@@ -25,7 +25,8 @@ $(document).ready(function () {
       $submitButton = $('.js-input-section--submit-button'),
       $textarea = $('.js-input-section--text-area'),
       tableTemplate = entityTableTemplate.innerHTML,
-      predictionTemplate = predictionTextTemplate.innerHTML;
+      predictionTemplate = predictionTextTemplate.innerHTML,
+      $mapLayout = $('.output-section-map');
 
   /**
    * Emits table view update
@@ -63,10 +64,20 @@ $(document).ready(function () {
       $table.show();
       $error.hide();
       $prediction.show();
+      $mapLayout.show();
+
 
       //var mentionArray = data.doc.mentions.mention;
-      var entityArray = data.doc.entities.entity;  
-      var a = data.testTitle;
+      var entityArray = data.doc.entities.entity;
+      var i=0
+      while(i< entityArray.length)
+      {
+        console.log('entity type is ' + JSON.stringify(entityArray[i].type));
+        i++;
+      }
+
+      var a = data.mlPrediction;
+      console.log('prediction received is ' + a);
       $prediction.html(_.template(predictionTemplate,{test: a}));
 
 
@@ -83,6 +94,7 @@ $(document).ready(function () {
       $loading.hide();
       $table.hide();
       $error.show();
+      $mapLayout.hide();
       $errorMessage.text(error.responseJSON.code + ': ' + error.responseJSON.error);
     });
   }
